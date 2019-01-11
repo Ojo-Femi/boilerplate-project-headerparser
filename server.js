@@ -24,6 +24,14 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+//my third API endpoint...
+app.get("/api/whoami", (req,res) => {
+  var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+  ip = ip.slice(0, ip.indexOf(','))
+  console.log(ip)
+  res.json({ipaddress: ip, language: req.headers["accept-language"], software: req.headers['user-agent']})
+})
+
 
 
 // listen for requests :)
